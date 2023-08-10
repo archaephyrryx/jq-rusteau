@@ -3,6 +3,14 @@ name = "jq-rusteau"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "jq_rs"
+bench = false
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+serde = "1.0.183"
+serde_json = "1.0.104"
+jqlang = { path="./jqlang", version = "0.1.0" }
+jqlang-proc-macro = { path="./jqlang-proc-macro", version = "0.1.0" }

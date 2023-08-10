@@ -1,0 +1,16 @@
+[package]
+name = "jqlang-proc-macro"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "jqlang_proc_macro"
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0.66"
+syn = "2.0"
+quote = "1.0"
+serde = "1.0.183"
+serde_json = "1.0.104"
+jqlang = { path = "../jqlang", version = "0.1.0" }
