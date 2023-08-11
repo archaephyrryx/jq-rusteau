@@ -5,6 +5,7 @@ edition = "2021"
 
 [lib]
 name = "jqlang"
+bench = false
 
 [dependencies]
 serde = "1.0.183"
