@@ -1,6 +1,5 @@
 {
     "rust-analyzer.linkedProjects": [
-        "./jqlang-proc-macro/Cargo.toml",
         "./Cargo.toml"
     ]
 }
