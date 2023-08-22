@@ -19,7 +19,7 @@ pub mod tests {
             "foo": "bar",
             "baz": [1, 2, 3]
         });
-        let ast = jq!(input | .);
+        let ast = jq!(input,  ".");
         let parsed = run!(ast);
         assert_eq!(input, parsed);
     }
