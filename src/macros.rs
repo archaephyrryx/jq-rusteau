@@ -1,4 +1,17 @@
-pub use jqlang_proc_macro::jq;
+#[macro_export]
+macro_rules! jq {
+    ( $x:expr => $script:tt ) => {
+        {
+            use ::chumsky::Parser;
+
+            match ::jqlang_parse::parser().parse($script) {
+                Ok(filters) => Ok(::jqlang::JqChain { input: json!($x), filters }),
+                Err(e) => Err(e)
+            }
+        }
+    };
+}
+
 
 #[macro_export]
 macro_rules! run {
@@ -9,9 +22,7 @@ macro_rules! run {
 
 #[cfg(test)]
 pub mod tests {
-    use super::*;
     use serde_json::json;
-    use jqlang_proc_macro::jq;
 
     #[test]
     fn jq_macro_test() {
@@ -19,7 +30,7 @@ pub mod tests {
             "foo": "bar",
             "baz": [1, 2, 3]
         });
-        let ast = jq!(input,  ".");
+        let Ok(ast) = jq!(input => ".") else { panic!("Bad parse!") };
         let parsed = run!(ast);
         assert_eq!(input, parsed);
     }
