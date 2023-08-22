@@ -4,6 +4,7 @@ use serde_json::Value;
 
 use crate::filter::Filter;
 use crate::filter::Identity;
+use crate::filter::ObjIndex;
 
 #[derive(Debug)]
 pub struct Transformation<T = Value, U = Value> {
@@ -20,6 +21,7 @@ impl From<FilterOp> for Transformation {
     fn from(op: FilterOp) -> Self {
         match op {
             FilterOp::Identity => Self::new(Box::new(Identity)),
+            FilterOp::ObjIdentIndex(index) => Self::new(Box::new(ObjIndex::from(index))),
         }
     }
 }
